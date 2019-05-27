@@ -8,6 +8,8 @@ require __DIR__ . '/param.php';
 
 require __DIR__ . '/bdd.php';
 
+require __DIR__ . '/classes/user.php';
+
 // require __DIR__ . '/functions.php';
 
 session_start();
