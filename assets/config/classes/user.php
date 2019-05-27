@@ -4,6 +4,10 @@ class User {
 
 	public function create($pdo) {
 
+		if(isset($_POST['email'])) {
+			$this->email = $_POST['email'];
+		}
+
 		if (isset($_POST['createAccount'])) {
 			$req = $pdo->prepare('
 				INSERT INTO users (mail, username, type, password) 
