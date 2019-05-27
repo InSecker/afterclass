@@ -3,9 +3,7 @@
 require 'assets/config/bootstrap.php';
 $page_title = 'AfterClass';
 
-$account = new User();
-
-//$account.create($_POST['email'], $_POST['']);
+$account = new User($pdo);
 
 $account->create($pdo);
 
@@ -19,11 +17,11 @@ include  'assets/inc/header.php';
 
 	<form action="accountCreation.php" method="post">
 
-		<label for="indent">Email</label>
-		<input id="indent" type="text" name="email">
+		<label for="email">Email</label>
+		<input id="email" type="text" name="email">
 
-		<label for="indent">Username</label>
-		<input id="indent" type="text" name="username">
+		<label for="username">Username</label>
+		<input id="username" type="text" name="username">
 
 		<label for="mdp">Mot de passe</label>
 		<input type="password" id="mdp" name="password" class="form-control">
