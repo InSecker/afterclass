@@ -48,7 +48,8 @@ CREATE TABLE `posts` (
 CREATE TABLE `users` (
                        `id` int(11) NOT NULL,
                        `mail` varchar(100) NOT NULL,
-                       `username` varchar(20) NOT NULL
+                       `username` varchar(20) NOT NULL,
+                       `type` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
