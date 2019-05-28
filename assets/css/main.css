@@ -69,4 +69,70 @@ a {
 body {
   font-family: 'Roboto';
   background: rgb(248,248,248);
+
+}
+
+/* PAGE CONNEXION & CREATION */
+
+.connexion__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+}
+
+.connexion__logo {
+  width: 430px;
+}
+
+.connexion__form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 440px;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid #39B0CA;
+  box-sizing: border-box;
+  border-radius: 30px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.connexion_create {
+  color: white;
+  font-size: 18px;
+}
+
+.connexion_create:hover {
+  color: #39B0CA;
+}
+
+.form__field {
+  width: 330px;
+  height: 40px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  font-size: 16px;
+
+}
+
+.form__label {
+  color: #FFFFFF;
+  width: 330px;
+  margin-bottom: 10px;
+  margin-top: 40px;
+  
+}
+
+.form__submit {
+
+background: #FFFFFF;
+border-radius: 10px;
+width: 160px;
+height: 42px;
+margin-top: 30px;
+font-size: 16px;
 }

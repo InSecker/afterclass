@@ -20,10 +20,10 @@
   <nav class="navigation">
     <ul>
       <li class="navElement">
-        <a href="index.php?logout">Déconnexion</a>
+        <a href="post.php">Poser une question</a>
       </li>
       <li class="navElement">
-        <a href="post.php">Poser une question</a>
+        <a href="index.php?logout">Déconnexion</a>
       </li>
     </ul>
   </nav>

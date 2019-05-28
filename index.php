@@ -18,19 +18,31 @@ include  'assets/inc/header.php';
 ?>
 
 
-<div class="">
-	<h1>Connexion</h1>
+<div class="connexion__container">
 
-	<form action="index.php" method="post">
+	<img class= "connexion__logo" src="assets/images/logo.png" alt="logo">
 
-		<label for="indent">Email / Pseudo</label>
-		<input id="indent" type="text" class="form-control" name="identifiant">
+	<form class="connexion__form" action="index.php" method="post">
 
-		<label for="password">Mot de passe</label>
-		<input type="password" id="password" name="password" class="form-control">
+		<label class="form__label" for="indent">Email / Pseudo</label>
+		<input class="form__field" id="indent" type="text" class="form-control" name="identifiant">
 
-		<input type="submit" name="login" class="" value="Connexion">
+		<label class="form__label" for="password">Mot de passe</label>
+		<input class="form__field" type="password" id="password" name="password" class="form-control">
+
+		<input class="form__submit"  type="submit" name="login" class="" value="Connexion">
 	</form>
 
-  <a href="accountCreation.php">Créer un compte</a>
+  <a class="connexion_create"href="accountCreation.php">Créer un compte</a>
 </div>
+
+<style>
+
+body {
+	height: 100vh;
+	width: 100vw;
+	background: url('assets/images/background.png') no-repeat center fixed;
+  background-size: cover;
+
+}
+</style>

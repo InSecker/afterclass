@@ -14,20 +14,37 @@ $user->message->showAlert();
 ?>
 
 
-<div class="">
-	<h1>Création Compte</h1>
+<div class="connexion__container">
 
-	<form action="accountCreation.php" method="post">
+	<img class= "connexion__logo" src="assets/images/logo.png" alt="logo">
 
-		<label for="email">Email</label>
-		<input id="email" type="text" name="email">
+	<form class="connexion__form"action="accountCreation.php" method="post">
 
-		<label for="username">Username</label>
-		<input id="username" type="text" name="username">
+		<label class="form__label" for="email">Email</label>
+		<input class="form__field" id="email" type="text" name="email">
 
-		<label for="mdp">Mot de passe</label>
-		<input type="password" id="mdp" name="password" class="">
+		<label class="form__label" for="username">Username</label>
+		<input class="form__field" id="username" type="text" name="username">
 
-		<input type="submit" name="createAccount" value="Soumettre">
+		<label class="form__label" for="mdp">Mot de passe</label>
+		<input class="form__field" type="password" id="mdp" name="password" class="">
+
+		<input class="form__submit" type="submit" name="createAccount" value="Soumettre">
 	</form>
+	
+	<a class="connexion_create" href="index.php">Déja un compte ? connectez-vous !</a>
+
 </div>
+
+	
+
+<style>
+
+body {
+	height: 100vh;
+	width: 100vw;
+	background: url('assets/images/background.png') no-repeat center fixed;
+  background-size: cover;
+
+}
+</style>
