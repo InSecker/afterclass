@@ -1,16 +1,22 @@
 <?php
 
-require 'assets/config/bootstrap.php';
-$page_title = 'AfterClass';
+include
 
-include  'assets/inc/header.php';
 
 ?>
 
+
 <div class="">
-	<h1>Bienvenue sur AfterClass!</h1>
+	<h1>Connexion</h1>
+
+	<form action="action.php" method="post">
+
+		<label for="indent">Email / Pseudo</label>
+		<input id="indent" type="text" class="form-control" name="identifiant">
+
+		<label for="mdp">Mot de passe</label>
+		<input type="password" id="mdp" name="mdp" class="form-control">
+
+		<input type="submit" name="login" class="" value="Connexion">
+	</form>
 </div>
-
-<?php
-
-include 'assets/inc/footer.php';

@@ -39,6 +39,10 @@ class User {
 
 			echo 'Le mot de passe est trop long';
 
+		} else if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/', $password)) {
+
+			echo 'Votre mot de passe doit contenir au moins une majuscule, une miniscule, une chiffre et au moins 8 caractères';
+
 		} else if (isset($_POST['createAccount'])) {
 			$req = $this->pdo->prepare('
 				INSERT INTO users (mail, username, type, password) 
@@ -51,8 +55,12 @@ class User {
 			');
 			$req->bindParam(':mail', $email);
 			$req->bindParam(':username', $username);
+			$password = password_hash($password, PASSWORD_DEFAULT);
+			echo $password;
 			$req->bindParam(':password', $password);
 			$req->execute();
+			header('Location: index.php');
+			exit();
 		}
 
 	}
@@ -77,5 +85,39 @@ class User {
 			}
 		}
 		return false;
+	}
+
+	public function connect() {
+
+		if (isset($_POST['login'])) {
+			// Rechercher l'user
+			$req = $pdo->prepare('
+				SELECT *
+				FROM utilisateur
+				WHERE
+					email = :identifiant
+					OR pseudo = :identifiant
+			');
+			$req->bindParam(':identifiant', $_POST['identifiant']);
+			$req->execute();
+
+			$user = $req->fetch(PDO::FETCH_ASSOC);
+			if (!$user) {
+				// Si aucun user n'a été trouvé
+				addFlash('danger', 'Aucun utilisateur n\'a été trouvé');
+
+			} elseif(!password_verify($_POST['mdp'], $user['mdp'])) {
+				// si le mdp ne correspond pas au hash en BDD
+				addFlash('danger', 'Le mot de passe ne correspond pas');
+			} else {
+				// On enregistre l'utilisateur en session
+				unset($user['mdp']); // le hash du mdp n'est pas à stocker en session
+				$_SESSION['user'] = $user;
+
+				// Redirection vers la page d'accueil
+				session_write_close();
+				header('Location: home.php');
+			}
+		}
 	}
 }

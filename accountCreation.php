@@ -5,7 +5,9 @@ $page_title = 'AfterClass';
 
 $account = new User($pdo);
 
-$account->create($pdo);
+if (isset($_POST['email'])) {
+	$account->create($pdo);
+}
 
 include  'assets/inc/header.php';
 
@@ -26,6 +28,6 @@ include  'assets/inc/header.php';
 		<label for="mdp">Mot de passe</label>
 		<input type="password" id="mdp" name="password" class="form-control">
 
-		<input type="submit" name="createAccount" value="Connexion">
+		<input type="submit" name="createAccount" value="Soumettre">
 	</form>
 </div>

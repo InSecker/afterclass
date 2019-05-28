@@ -8,7 +8,7 @@ require __DIR__ . '/param.php';
 
 require __DIR__ . '/bdd.php';
 
-require __DIR__ . '/classes/user.php';
+require __DIR__ . '/classes/user_object.php';
 
 // require __DIR__ . '/functions.php';
 
