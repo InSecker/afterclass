@@ -9,6 +9,8 @@ if ( isset($_GET['logout']) ) {
 	$user->disconnect();
 }
 
+
+
 ?>
 
 <div class="">
@@ -40,9 +42,9 @@ if(isset($_POST['send'])) {
 }
 
 // voir les posts
-foreach ($post->allPosts($pdo) as $post) :?>
+foreach ($post->getPost($pdo) as $post) :?>
 
-  Titre : <?= $post['title']?> <a href="index.php?id=<?= $post['id']?>">[Effacer]</a><br>
+  Titre : <?= $post['title']?> <a href="home.php?id=<?= $post['id']?>">[Effacer]</a><br>
   Message : <?= $post['content'] ?> <br>
   Auteur : <?= $post['author'] ?> <br><br>
 

@@ -35,7 +35,7 @@ class Post
 
     }
 
-    function allPosts(PDO $con)
+    function getPost(PDO $con)
     {
         $req = $con->query('SELECT * FROM posts');
         return $req->fetchAll(PDO::FETCH_ASSOC);

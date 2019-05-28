@@ -9,7 +9,6 @@ class User {
 		$this->pdo = $pdo;
 	}
 
-
 	public function create() {
 		$email = $_POST['email'];
 		$username = $_POST['username'];
