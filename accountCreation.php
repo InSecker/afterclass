@@ -9,6 +9,8 @@ if (isset($_POST['email'])) {
 
 include  'assets/inc/header.php';
 
+$user->message->showAlert();
+
 ?>
 
 

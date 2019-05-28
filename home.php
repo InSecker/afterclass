@@ -1,5 +1,4 @@
 <?php
-
 require 'assets/config/bootstrap.php';
 $page_title = 'AfterClass';
 
@@ -45,7 +44,6 @@ foreach ($post->allPosts($pdo) as $post) :?>
   Titre : <?= $post['title']?> <a href="index.php?id=<?= $post['id']?>">[Effacer]</a><br>
   Message : <?= $post['content'] ?> <br>
   Auteur : <?= $post['author'] ?> <br><br>
-
 <?php  endforeach;
 
 include 'assets/inc/footer.php';

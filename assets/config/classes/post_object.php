@@ -15,6 +15,7 @@ class Post
         $content = $_POST['content'];
         $author = $_POST['author'];
         if (empty($titre) and empty($content) and empty($author)) {
+
             echo 'Veuillez remplir tout les champs';
         } else {
             $req = $this->pdo->prepare('

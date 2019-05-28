@@ -1,11 +1,13 @@
 <?php
 
-class User {
 
+class User {
+    public $message;
 	public $pdo;
 
 	public function __construct($pdo)
 	{
+	    $this->message = new Alert();
 		$this->pdo = $pdo;
 	}
 
@@ -18,6 +20,8 @@ class User {
 		if (strpos($email, '@hetic.net') === false || empty($_POST['email'])) {
 
 			echo 'Entrez une adresse mail HETIC';
+			$this->message->createAlert('test', 'red');
+
 
 		}	else if ($this::mailIsUsed($email)) {
 
