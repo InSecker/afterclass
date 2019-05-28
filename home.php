@@ -26,10 +26,6 @@ include  'assets/inc/header.php';
       <label for="content">Message</label>
       <textarea name="content" id="content" cols="30" rows="10"></textarea>
     </p>
-    <p>
-      <label for="author">Auteur :</label>
-      <input type="text" name="author">
-    </p>
     <input type="submit" name="send">
   </form>
 
@@ -47,7 +43,8 @@ foreach ($post->getPost($pdo) as $post) :?>
 
   Titre : <?= $post['title']?> <a href="home.php?id=<?= $post['id']?>">[Effacer]</a><br>
   Message : <?= $post['content'] ?> <br>
-  Auteur : <?= $post['author'] ?> <br><br>
+  Auteur : <?= $post['author'] ?> <br>
+  Date de publication : <?= $post['date'] ?> <br><br>
 
 <?php  endforeach;
 

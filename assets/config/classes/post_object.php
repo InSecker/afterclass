@@ -13,7 +13,7 @@ class Post
     {
         $title = $_POST['title'];
         $content = $_POST['content'];
-        $author = $_POST['author'];
+        $author = $_SESSION['user']['username'];
         if (empty($titre) and empty($content) and empty($author)) {
             echo 'Veuillez remplir tout les champs';
         } else {
@@ -28,7 +28,7 @@ class Post
             $req->bindParam(':title', $title);
             $req->bindParam(':content', $content);
             $req->bindParam(':author', $author);
-            $req->execute();
+            $req->execute();.
 
             echo 'message envoyé';
         }
@@ -37,7 +37,7 @@ class Post
 
     function getPost(PDO $con)
     {
-        $req = $con->query('SELECT * FROM posts');
+        $req = $con->query('SELECT * FROM posts ORDER BY date DESC');
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
