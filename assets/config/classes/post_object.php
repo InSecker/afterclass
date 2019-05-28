@@ -13,7 +13,7 @@ class Post
     {
         $title = $_POST['title'];
         $content = $_POST['content'];
-        $author = $_POST['author'];
+        $author = $_SESSION['user']['username'];
         if (empty($titre) and empty($content) and empty($author)) {
 
             echo 'Veuillez remplir tout les champs';
@@ -36,9 +36,9 @@ class Post
 
     }
 
-    function allPosts(PDO $con)
+    function getPost(PDO $con)
     {
-        $req = $con->query('SELECT * FROM posts');
+        $req = $con->query('SELECT * FROM posts ORDER BY date DESC');
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 

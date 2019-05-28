@@ -11,7 +11,6 @@ class User {
 		$this->pdo = $pdo;
 	}
 
-
 	public function create() {
 		$email = $_POST['email'];
 		$username = $_POST['username'];
@@ -126,7 +125,7 @@ class User {
 		// Déconnexion
 		if (isset($_GET['logout'])) {
 			unset($_SESSION['user']);
+			header('Location: index.php');
 		}
-		header('Location: index.php');
 	}
 }
