@@ -3,6 +3,8 @@
 require 'assets/config/bootstrap.php';
 $page_title = 'AfterClass - Connexion';
 
+$user->disconnect();
+
 if ( isset($_POST['login']) ) {
 	$user->connect();
 }

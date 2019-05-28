@@ -1,20 +1,21 @@
 <?php
 
 require 'assets/config/bootstrap.php';
+
+if (!isset($_SESSION['user'])) {
+  header('Location: index.php');
+}
+
 $page_title = 'AfterClass';
 
 include  'assets/inc/header.php';
-
-if ( isset($_GET['logout']) ) {
-	$user->disconnect();
-}
-
-
 
 ?>
 
 <div class="">
 	<h1>Bienvenue sur AfterClass!</h1>
+
+  <a href="index.php?logout">Déconnexion</a>
 
   <form action="home.php" method="post">
     <p>
