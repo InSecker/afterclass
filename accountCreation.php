@@ -3,10 +3,8 @@
 require 'assets/config/bootstrap.php';
 $page_title = 'AfterClass';
 
-$account = new User($pdo);
-
 if (isset($_POST['email'])) {
-	$account->create($pdo);
+	$user->create();
 }
 
 include  'assets/inc/header.php';
@@ -26,7 +24,7 @@ include  'assets/inc/header.php';
 		<input id="username" type="text" name="username">
 
 		<label for="mdp">Mot de passe</label>
-		<input type="password" id="mdp" name="password" class="form-control">
+		<input type="password" id="mdp" name="password" class="">
 
 		<input type="submit" name="createAccount" value="Soumettre">
 	</form>

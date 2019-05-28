@@ -88,36 +88,33 @@ class User {
 	}
 
 	public function connect() {
+		// Rechercher l'user
+		$req = $this->pdo->prepare('
+			SELECT *
+			FROM users
+			WHERE
+				mail = :identifiant
+				OR username = :identifiant
+		');
+		$req->bindParam(':identifiant', $_POST['identifiant']);
+		$req->execute();
 
-		if (isset($_POST['login'])) {
-			// Rechercher l'user
-			$req = $pdo->prepare('
-				SELECT *
-				FROM utilisateur
-				WHERE
-					email = :identifiant
-					OR pseudo = :identifiant
-			');
-			$req->bindParam(':identifiant', $_POST['identifiant']);
-			$req->execute();
+		$user = $req->fetch(PDO::FETCH_ASSOC);
+		if (!$user) {
 
-			$user = $req->fetch(PDO::FETCH_ASSOC);
-			if (!$user) {
-				// Si aucun user n'a été trouvé
-				addFlash('danger', 'Aucun utilisateur n\'a été trouvé');
+			echo 'Aucun utilisateur n\'a été trouvé';
 
-			} elseif(!password_verify($_POST['mdp'], $user['mdp'])) {
-				// si le mdp ne correspond pas au hash en BDD
-				addFlash('danger', 'Le mot de passe ne correspond pas');
-			} else {
-				// On enregistre l'utilisateur en session
-				unset($user['mdp']); // le hash du mdp n'est pas à stocker en session
-				$_SESSION['user'] = $user;
+		} else if(!password_verify($_POST['password'], $user['password'])) {
+			// si le mdp ne correspond pas au hash en BDD
+			echo 'Le mot de passe ne correspond pas';
+		} else {
+			// On enregistre l'utilisateur en session
+			unset($user['mdp']); // le hash du mdp n'est pas à stocker en session
+			$_SESSION['user'] = $user;
 
-				// Redirection vers la page d'accueil
-				session_write_close();
-				header('Location: home.php');
-			}
+			// Redirection vers la page d'accueil
+			session_write_close();
+			header('Location: home.php');
 		}
 	}
 }

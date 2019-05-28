@@ -10,6 +10,8 @@ require __DIR__ . '/bdd.php';
 
 require __DIR__ . '/classes/user_object.php';
 
+$user = new User($pdo);
+
 // require __DIR__ . '/functions.php';
 
 session_start();
