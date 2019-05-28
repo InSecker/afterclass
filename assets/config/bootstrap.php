@@ -16,6 +16,4 @@ $user = new User($pdo);
 $post = new Post($pdo);
 $alert = new Alert();
 
-// require __DIR__ . '/functions.php';
-
 session_start();

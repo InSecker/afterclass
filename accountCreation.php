@@ -4,7 +4,7 @@ require 'assets/config/bootstrap.php';
 $page_title = 'AfterClass';
 
 if (isset($_POST['email'])) {
-	$user->create();
+	$user->create($pdo);
 }
 
 include  'assets/inc/header.php';

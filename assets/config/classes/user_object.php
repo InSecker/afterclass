@@ -1,17 +1,14 @@
 <?php
 
-
 class User {
-    public $message;
-	public $pdo;
+	public $message;
 
-	public function __construct($pdo)
+	public function __construct()
 	{
 	    $this->message = new Alert();
-		$this->pdo = $pdo;
 	}
 
-	public function create() {
+	public function create(PDO $con) {
 		$email = $_POST['email'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
@@ -47,7 +44,7 @@ class User {
 			echo 'Votre mot de passe doit contenir au moins une majuscule, une miniscule, une chiffre et au moins 8 caractères';
 
 		} else if (isset($_POST['createAccount'])) {
-			$req = $this->pdo->prepare('
+			$req = $con->prepare('
 				INSERT INTO users (mail, username, type, password) 
 				VALUES (
 						 :mail ,
@@ -90,9 +87,9 @@ class User {
 		return false;
 	}
 
-	public function connect() {
+	public function connect(PDO $con) {
 		// Rechercher l'user
-		$req = $this->pdo->prepare('
+		$req = $con->prepare('
 			SELECT *
 			FROM users
 			WHERE

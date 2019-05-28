@@ -2,14 +2,8 @@
 
 class Post
 {
-    public $pdo;
 
-    public function __construct($pdo)
-    {
-        $this->pdo = $pdo;
-    }
-
-    public function addPost()
+    public function addPost(PDO $con)
     {
         $title = $_POST['title'];
         $content = $_POST['content'];
@@ -18,7 +12,7 @@ class Post
 
             echo 'Veuillez remplir tout les champs';
         } else {
-            $req = $this->pdo->prepare('
+            $req = $con->prepare('
 				INSERT INTO posts (title, content, author) 
 				VALUES (
 						 :title ,
@@ -36,11 +30,16 @@ class Post
 
     }
 
-    function getPost(PDO $con)
+    function getAll(PDO $con)
     {
         $req = $con->query('SELECT * FROM posts ORDER BY date DESC');
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    function getOne(PDO $con, $id)  {
+    	$req =  $con->query('SELECT * FROM posts WHERE id=' . $id);
+    	return $req->fetch(PDO::FETCH_ASSOC);
+		}
 
     function deletePost(PDO $con)
     {

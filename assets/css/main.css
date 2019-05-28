@@ -1,0 +1,72 @@
+@import "reset.css";
+
+
+header {
+  padding: 20px;
+  width: 100vw;
+  background: white;
+}
+
+h1 {
+  display: inline-block;
+  font-size: 30px;
+}
+
+nav {
+  display: inline-block;
+  float: right;
+  margin-right: 100px;
+}
+
+.navElement {
+  display: inline-block;
+  color: black;
+  padding-left: 30px;
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+a {
+  color: rgb(100,100,255);
+  text-decoration: none;
+}
+
+.post  {
+  width: 500px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
+  padding: 10px;
+  border: solid 1px gray;
+  border-radius: 10px;
+  background: white;
+}
+
+.postTitle {
+  color: rgb(50,50,150);
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.postContent {
+  line-height: 1.5;
+  background: rgb(245,245,245);
+  padding: 5px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.postAuthor {
+  display: inline-block;
+}
+
+.postDate {
+  float: right;
+}
+
+body {
+  font-family: 'Roboto';
+  background: rgb(248,248,248);
+}

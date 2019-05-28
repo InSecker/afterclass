@@ -1,49 +1,41 @@
 <?php
 require 'assets/config/bootstrap.php';
+$page_title = 'AfterClass';
+
 
 if (!isset($_SESSION['user'])) {
   header('Location: index.php');
 }
+if(isset($_POST['send'])) {
+	$post->addPost($pdo);
+}
 
-$page_title = 'AfterClass';
-
-include  'assets/inc/header.php';
-
+include 'assets/inc/header.php';
 ?>
-
-<div class="">
-	<h1>Bienvenue sur AfterClass!</h1>
-
-  <a href="index.php?logout">Déconnexion</a>
-
-  <form action="home.php" method="post">
-    <p>
-      <label for="title">Titre</label>
-      <input type="text" name="title">
-    </p>
-    <p>
-      <label for="content">Message</label>
-      <textarea name="content" id="content" cols="30" rows="10"></textarea>
-    </p>
-    <input type="submit" name="send">
-  </form>
-
-</div>
 
 <?php
 
 $post->deletePost($pdo);
-if(isset($_POST['send'])) {
-	$post->addPost();
-}
 
 // voir les posts
-foreach ($post->getPost($pdo) as $post) :?>
+foreach ($post->getALL($pdo) as $post) :?>
 
-  Titre : <?= $post['title']?> <a href="home.php?id=<?= $post['id']?>">[Effacer]</a><br>
-  Message : <?= $post['content'] ?> <br>
-  Auteur : <?= $post['author'] ?> <br>
-  Date de publication : <?= $post['date'] ?> <br><br>
+  <article  class="post">
+    <a href='post.php?id=<?=$post["id"]?>'> <h2 class="postTitle"> <?= $post['title']?> </h2> </a>
+    <p class="postContent"><?= htmlentities($post['content']) ?></p>
+    <h3 class="postAuthor" >Auteur: <?= $post['author'] ?></h3>
+    <h4 class="postDate" >Date  de publication: <?= $post['date'] ?></h4>
+
+		<?php
+		if ($post['author'] === $_SESSION['user']['username']) {
+			echo "<a href='home.php?id=" . $post["id"] . "'>[Modifier]</a><br>";
+		}
+		?>
+
+  </article>
+
+
+  <br>
 
 <?php  endforeach;
 
