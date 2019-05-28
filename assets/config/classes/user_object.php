@@ -24,7 +24,7 @@ class User {
 
 		}	else if ($this::mailIsUsed($email)) {
 
-			echo 'L\'adresse email est déjà enregistrée';
+            $this->message->createAlert("L'adresse e-mail est déjà enregistrée", 'red');
 
 		} else if(strlen($email) > 100 ) {
 

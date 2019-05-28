@@ -11,7 +11,7 @@ class Alert
        if(isset($_SESSION['message']) AND isset($_SESSION['type'])) {
            $sess_message = $_SESSION['message'];
            $sess_type = $_SESSION['type'];
-           echo "<div class='$sess_type'>$sess_message</div>";}
+           echo "<div class='.alert .$sess_type'>$sess_message</div>";}
 
            // une fois que l'alerte est affichée, on vide la session pour accueuilir la prochaine alerte
 
