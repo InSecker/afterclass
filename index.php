@@ -3,7 +3,7 @@
 require 'assets/config/bootstrap.php';
 $page_title = 'AfterClass - Connexion';
 
-if (isset($_POST['login'])) {
+if ( isset($_POST['login']) ) {
 	$user->connect();
 }
 
@@ -25,7 +25,6 @@ include  'assets/inc/header.php';
 
 		<input type="submit" name="login" class="" value="Connexion">
 	</form>
-
 
   <a href="accountCreation.php">Créer un compte</a>
 </div>

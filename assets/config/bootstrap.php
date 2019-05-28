@@ -9,8 +9,10 @@ require __DIR__ . '/param.php';
 require __DIR__ . '/bdd.php';
 
 require __DIR__ . '/classes/user_object.php';
+require __DIR__ . '/classes/post_object.php';
 
 $user = new User($pdo);
+$post = new Post($pdo);
 
 // require __DIR__ . '/functions.php';
 

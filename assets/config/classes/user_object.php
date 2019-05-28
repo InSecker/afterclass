@@ -117,4 +117,12 @@ class User {
 			header('Location: home.php');
 		}
 	}
+
+	public function disconnect() {
+		// Déconnexion
+		if (isset($_GET['logout'])) {
+			unset($_SESSION['user']);
+		}
+		header('Location: index.php');
+	}
 }
