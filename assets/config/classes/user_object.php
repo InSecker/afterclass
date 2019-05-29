@@ -19,7 +19,7 @@ class User {
 			$this->message->createAlert('test', 'red');
 
 
-		}	else if ($this::mailIsUsed($email)) {
+		}	else if ($this::mailIsUsed($con, $email)) {
 
             $this->message->createAlert("L'adresse e-mail est déjà enregistrée", 'red');
 
@@ -27,7 +27,7 @@ class User {
 
             $this->message->createAlert("L'adresse email est trop longue", 'red');
 
-		} else if($this->usernameIsUsed($username)) {
+		} else if($this->usernameIsUsed($con, $username)) {
 
             $this->message->createAlert("Le nom d'utilisateur existe déjà", 'red');
 
@@ -68,8 +68,8 @@ class User {
 
 	}
 
-	public function mailIsUsed($mail) {
-		$req = $this->pdo->query('SELECT mail FROM users');
+	public function mailIsUsed(PDO $con, $mail) {
+		$req = $con->query('SELECT mail FROM users');
 		$mails = $req->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($mails as $cle) {
 			if ($mail == $cle['mail']) {
@@ -79,8 +79,8 @@ class User {
 		return false;
 	}
 
-	public function usernameIsUsed($username) {
-		$req = $this->pdo->query('SELECT username FROM users');
+	public function usernameIsUsed(PDO $con, $username) {
+		$req = $con->query('SELECT username FROM users');
 		$usernames = $req->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($usernames as $cle) {
 			if ($username == $cle['username']) {
