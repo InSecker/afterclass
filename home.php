@@ -17,7 +17,14 @@ include 'assets/inc/header.php';
 
 $post->deletePost($pdo);
 
+if(isset($_SESSION['message'])) {?>
+    <div class="container_alert">
+        <?php $user->message->showAlert(); ?>
+    </div>
+<?php }
+
 // voir les posts
+
 foreach ($post->getALL($pdo) as $post) :?>
 
   <article  class="post">

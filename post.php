@@ -20,8 +20,8 @@ $page_title = 'AfterClass - Question';
 		<h4 class="postDate" >Date  de publication: <?= $currentPost['date'] ?></h4>
 		<?php
 
-      if ($currentPostpost['author'] === $_SESSION['user']['username']) {
-        echo "<a href='post.php?modify&id=" . $post["id"] . "'>[Modifier]</a><br>";
+      if ($currentPost['author'] === $_SESSION['user']['username']) {
+        echo "<a href='post.php?modify&id=" . $_GET["id"] . "'>[Modifier]</a><br>";
       }
 
 		?>

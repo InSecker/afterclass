@@ -3,6 +3,11 @@
 class Post
 {
 
+    public function __construct()
+    {
+        $this->message = new Alert();
+    }
+
     public function addPost(PDO $con)
     {
         $title = $_POST['title'];
@@ -10,7 +15,8 @@ class Post
         $author = $_SESSION['user']['username'];
         if (empty($titre) and empty($content) and empty($author)) {
 
-            echo 'Veuillez remplir tout les champs';
+            $this->message->createAlert("Veuillez remplir tout les champs", 'red');
+
         } else {
             $req = $con->prepare('
 				INSERT INTO posts (title, content, author) 
@@ -25,7 +31,9 @@ class Post
             $req->bindParam(':author', $author);
             $req->execute();
 
-            echo 'message envoyé';
+            $this->message->createAlert("Message envoyé", 'green');
+
+
         }
 
     }

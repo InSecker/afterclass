@@ -1,5 +1,15 @@
 @import "reset.css";
 
+
+@keyframes exit {
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+
+}
 :root {
   --orange: #FF8B1E;
   --blue: #002D5A;
@@ -150,7 +160,7 @@ body {
 }
 
 .indexLogo {
-  text-aligne: center;
+  text-align: center;
 }
 
 
@@ -172,4 +182,33 @@ body {
   border-radius: 10px;
   font-size: 16px;
   border: none;
+}
+
+
+.container_alert {
+  margin-top:10px;
+  width: 100vw;
+  height:auto;
+  display: flex;
+  justify-content: center;
+}
+.alert {
+  height: 50px;
+  width: 300px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: exit 6s forwards;
+}
+
+.red {
+  background: #EC0707;
+  border: #E32237 1px solid;
+
+}
+
+.green {
+  background: #20CE43;
+  border: #05ce68 1px solid;
 }

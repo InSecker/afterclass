@@ -25,25 +25,28 @@ class User {
 
 		} else if(strlen($email) > 100 ) {
 
-			echo 'L\'adresse email est trop longue';
+            $this->message->createAlert("L'adresse email est trop longue", 'red');
 
 		} else if($this->usernameIsUsed($username)) {
 
-			echo 'Le nom d\'utilisateur existe déjà';
+            $this->message->createAlert("Le nom d'utilisateur existe déjà", 'red');
 
 		} else if(strlen($username) > 20) {
 
-			echo 'Le nom d\'utilisateur est trop long';
+            $this->message->createAlert("Le nom d'utilisateur est trop long", 'red');
 
-		} else if(strlen($password) > 50) {
 
-			echo 'Le mot de passe est trop long';
+        } else if(strlen($password) > 50) {
 
-		} else if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/', $password)) {
+            $this->message->createAlert("Le mot de passe est trop long", 'red');
 
-			echo 'Votre mot de passe doit contenir au moins une majuscule, une miniscule, une chiffre et au moins 8 caractères';
 
-		} else if (isset($_POST['createAccount'])) {
+        } else if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/', $password)) {
+
+            $this->message->createAlert("Votre mot de passe doit contenir au moins une majuscule, une miniscule, une chiffre et au moins 8 caractères", 'red');
+
+
+        } else if (isset($_POST['createAccount'])) {
 			$req = $con->prepare('
 				INSERT INTO users (mail, username, type, password) 
 				VALUES (
@@ -102,12 +105,14 @@ class User {
 		$user = $req->fetch(PDO::FETCH_ASSOC);
 		if (!$user) {
 
-			echo 'Aucun utilisateur n\'a été trouvé';
+            $this->message->createAlert("Aucun utilisateur n'a été trouvé", 'red');
 
-		} else if(!password_verify($_POST['password'], $user['password'])) {
+
+        } else if(!password_verify($_POST['password'], $user['password'])) {
 			// si le mdp ne correspond pas au hash en BDD
-			echo 'Le mot de passe ne correspond pas';
-		} else {
+            $this->message->createAlert("Le mot de passe ne correspond pas", 'red');
+
+        } else {
 			// On enregistre l'utilisateur en session
 			unset($user['mdp']); // le hash du mdp n'est pas à stocker en session
 			$_SESSION['user'] = $user;
