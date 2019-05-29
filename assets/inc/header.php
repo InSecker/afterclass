@@ -16,7 +16,7 @@
 <?php if(isset($_SESSION['user'])): ?>
 
 <header>
-  <a href="home.php"><h1>Bienvenue sur AfterClass <?= $_SESSION['user']['username']?></h1></a>
+  <a href="home.php"><img class="logo" src="assets/images/logo.svg" alt=""></a>
   <nav class="navigation">
     <ul>
       <li class="navElement">

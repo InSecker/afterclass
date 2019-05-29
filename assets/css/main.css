@@ -1,10 +1,20 @@
 @import "reset.css";
 
+:root {
+  --orange: #FF8B1E;
+  --blue: #002D5A;
+}
 
 header {
-  padding: 20px;
+  padding: 5px;
   width: 100vw;
-  background: white;
+  background: var(--orange);
+}
+
+.logo {
+  fill: var(--blue);
+  width: 150px;
+  margin-left: 20px;
 }
 
 h1 {
@@ -15,6 +25,7 @@ h1 {
 nav {
   display: inline-block;
   float: right;
+  margin-top: 15px;
   margin-right: 100px;
 }
 
@@ -27,12 +38,12 @@ nav {
 }
 
 a {
-  color: rgb(100,100,255);
+  color: var(--blue);
   text-decoration: none;
 }
 
 .post  {
-  width: 500px;
+  width: 60vw;
   margin-right: auto;
   margin-left: auto;
   margin-top: 20px;
@@ -68,13 +79,15 @@ a {
 
 body {
   font-family: 'Roboto';
-  background: rgb(248,248,248);
+  background: url("../images/prism.png") repeat;
 
 }
 
 /* PAGE CONNEXION & CREATION */
 
 .connexion__container {
+  background: url("../images/background.jpg");
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,15 +103,12 @@ body {
 .connexion__form {
   display: flex;
   flex-direction: column;
-  width: 500px;
-  height: 440px;
   align-items: center;
   justify-content: center;
-  border: 5px solid #39B0CA;
   box-sizing: border-box;
-  border-radius: 30px;
-  margin-bottom: 50px;
-  margin-top: 50px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.8);
+  padding: 20px;
 }
 
 .connexion_create {
@@ -111,28 +121,55 @@ body {
 }
 
 .form__field {
+  text-align: center;
   width: 330px;
   height: 40px;
-  background: #FFFFFF;
+  background: rgb(240,240,240);
   border-radius: 10px;
   font-size: 16px;
+  border: none;
 
 }
 
 .form__label {
-  color: #FFFFFF;
+  color: black;
   width: 330px;
   margin-bottom: 10px;
-  margin-top: 40px;
+  margin-top: 10px;
   
 }
 
 .form__submit {
+  background: #FFFFFF;
+  border-radius: 10px;
+  width: 160px;
+  height: 42px;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: bold;
+}
 
-background: #FFFFFF;
-border-radius: 10px;
-width: 160px;
-height: 42px;
-margin-top: 30px;
-font-size: 16px;
+.indexLogo {
+  text-aligne: center;
+}
+
+
+/* PAGE CREATION ARTICLE */
+
+
+.createLabel {
+  margin-top: 10px;
+  color: black;
+  width: 330px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.createInput {
+  width: 100%;
+  text-align: center;
+  background: rgb(240,240,240);
+  border-radius: 10px;
+  font-size: 16px;
+  border: none;
 }

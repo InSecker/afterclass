@@ -18,26 +18,34 @@ $page_title = 'AfterClass - Question';
 		<p class="postContent"><?= htmlentities($currentPost['content']) ?></p>
 		<h3 class="postAuthor" >Auteur: <?= $currentPost['author'] ?></h3>
 		<h4 class="postDate" >Date  de publication: <?= $currentPost['date'] ?></h4>
+		<?php
 
+      if ($currentPostpost['author'] === $_SESSION['user']['username']) {
+        echo "<a href='post.php?modify&id=" . $post["id"] . "'>[Modifier]</a><br>";
+      }
+
+		?>
 	</article>
 
 <?php else: ?>
 
-<div>
-	<h1>Écrire une question</h1>
+<article class="post">
+  <h1>Écrire une question</h1>
 
-	<form action="home.php" method="post">
-		<p>
-			<label for="title">Titre</label>
-			<input type="text" name="title">
-		</p>
-		<p>
-			<label for="content">Message</label>
-			<textarea name="content" id="content" cols="30" rows="10"></textarea>
-		</p>
-		<input type="submit" name="send">
-	</form>
-</div>
+  <form action="home.php" method="post">
+
+    <label class="createLabel" for="title">Titre</label>
+    <input class="createInput" type="text" name="title">
+
+    <label class="createLabel" for="content">Message</label>
+    <textarea class="createInput" name="content" id="content" cols="30" rows="10"></textarea>
+
+    <input class="createSubmit" type="submit" name="send">
+
+  </form>
+
+</article>
+
 
 <?php endif; ?>
 

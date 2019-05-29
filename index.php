@@ -18,9 +18,9 @@ include  'assets/inc/header.php';
 ?>
 
 
-<div class="connexion__container">
 
-	<img class= "connexion__logo" src="assets/images/logo.png" alt="logo">
+<div class="connexion__container">
+  <img class="indexLogo" src="assets/images/logo.svg" alt="">
 
 	<form class="connexion__form" action="index.php" method="post">
 
@@ -32,17 +32,6 @@ include  'assets/inc/header.php';
 
 		<input class="form__submit"  type="submit" name="login" class="" value="Connexion">
 	</form>
-
-  <a class="connexion_create"href="accountCreation.php">Créer un compte</a>
 </div>
 
-<style>
-
-body {
-	height: 100vh;
-	width: 100vw;
-	background: url('assets/images/background.png') no-repeat center fixed;
-  background-size: cover;
-
-}
-</style>
+<a class="connexion_create"href="accountCreation.php">Créer un compte</a>
