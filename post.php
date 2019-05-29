@@ -2,6 +2,11 @@
 
 require './assets/config/bootstrap.php';
 
+
+if (!isset($_SESSION['user'])) {
+	header('Location: index.php');
+}
+
 $page_title = 'AfterClass - Question';
 
 require './assets/inc/header.php';
@@ -50,10 +55,22 @@ require './assets/inc/header.php';
 		<p class="postContent"><?= htmlentities($currentPost['content']) ?></p>
 		<h3 class="postAuthor" >Auteur: <?= $currentPost['author'] ?></h3>
     <h4 class="postDate" >Date  de publication: <?= $currentPost['date'] ?></h4>
+        <div class="likes-container">
+            <div class="likes">
+                <a href=""><span class="likes-numbers">177</span><img src="./assets/images/up.svg" alt="up"></a>
+                <a href=""><span class="likes-numbers">12</span><img src="./assets/images/down.svg" alt="down"></a>
+            </div>
+        </div>
+        <div class="likes-container">
+
+        </div>
+
+		<h4 class="postDate" >Date  de publication: <?= $currentPost['date'] ?></h4>
 		<?php
 
       if ($currentPost['author'] === $_SESSION['user']['username']) {
-        echo "<a href='post.php?modify&id=" . $currentPost["id"] . "'>[Modifier]</a><br>";
+
+        echo "<a href='post.php?modify&id=" . $_GET["id"] . "'>[Modifier]</a><br>";
       }
     ?>
 
@@ -80,9 +97,6 @@ require './assets/inc/header.php';
 
  
 <?php  endforeach; ?>
-   
-
-
 
 <?php else: ?>
 

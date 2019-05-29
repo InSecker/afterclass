@@ -9,13 +9,13 @@ if (isset($_POST['email'])) {
 
 include  'assets/inc/header.php';
 
-$user->message->showAlert();
+
 
 ?>
 
 
 <div class="connexion__container">
-
+<?php $user->message->showAlert(); ?>
 	<img class= "connexion__logo" src="assets/images/logo.png" alt="logo">
 
 	<form class="connexion__form"action="accountCreation.php" method="post">

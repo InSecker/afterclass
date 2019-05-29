@@ -1,5 +1,15 @@
 @import "reset.css";
 
+
+@keyframes exit {
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+
+}
 :root {
   --orange: #FF8B1E;
   --blue: #002D5A;
@@ -47,7 +57,7 @@ a {
   margin-right: auto;
   margin-left: auto;
   margin-top: 20px;
-  padding: 10px;
+  padding: 20px;
   border: solid 1px gray;
   border-radius: 10px;
   background: white;
@@ -177,3 +187,66 @@ body {
 
 
   
+
+.container_alert {
+  margin-top:10px;
+  width: 100vw;
+  height:auto;
+  display: flex;
+  justify-content: center;
+}
+.alert {
+  height: 50px;
+  width: 300px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: exit 6s forwards;
+}
+
+.red {
+  background: #EC0707;
+  border: #E32237 1px solid;
+}
+
+.green {
+  background: #20CE43;
+  border: #05ce68 1px solid;
+}
+
+.likes-container {
+  height: 30px;
+  width: 100px;
+  margin-top: 10px;
+}
+
+.likes-container img {
+  margin-left: 5px;
+}
+
+.fire {
+  display: flex;
+  align-items: center;
+}
+.fire img {
+  margin-right: 5px;
+}
+
+.fire_number {
+  margin-top:2px;
+}
+
+.add_fire {
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.likes-numbers {
+  padding-left: 5px;
+}
+
+
+form {
+  display: inline-block;
+}
