@@ -16,13 +16,31 @@ include 'assets/inc/header.php';
 
 $post->deletePost($pdo);
 
+if(isset($_SESSION['message'])) {?>
+    <div class="container_alert">
+        <?php $user->message->showAlert(); ?>
+    </div>
+<?php }
+
 // voir les posts
-foreach ($post->getAll($pdo) as $post) :?>
+
+foreach ($post->getALL($pdo) as $post): ?>
 
   <article  class="post">
     <a href='post.php?id=<?=$post["id"]?>'> <h2 class="postTitle"> <?= $post['title']?> </h2> </a>
     <p class="postContent"><?= htmlentities($post['content']) ?></p>
-    <h3 class="postAuthor" >Auteur: <?= $post['author'] ?></h3>
+      <h3 class="postAuthor" >Auteur: <?= $post['author'] ?></h3>
+      <div class="likes-container">
+          <div class="likes">
+              <form action="#" method="post">
+                  <a href=""><img src="./assets/images/up.svg" alt="up"></a>
+              </form>
+              <span class="likes-numbers">177</span>
+              <form action="#" method="post">
+                  <a href=""><span class="likes-numbers"></span><img src="./assets/images/down.svg" alt="down"></a>
+              </form>
+          </div>
+      </div>
     <h4 class="postDate" >Date  de publication: <?= $post['date'] ?></h4>
   </article>
 
