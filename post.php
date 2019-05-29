@@ -2,6 +2,11 @@
 
 require './assets/config/bootstrap.php';
 
+
+if (!isset($_SESSION['user'])) {
+	header('Location: index.php');
+}
+
 $page_title = 'AfterClass - Question';
 
 require './assets/inc/header.php';
@@ -59,7 +64,10 @@ if (isset($_POST['send'])) {
         echo "<a href='post.php?modify&id=" . $currentPost["id"] . "'>[Modifier]</a><br>";
       }
 		?>
+
+    <form action="#"></form>
 	</article>
+  <section></section>
 
 <?php else: ?>
 

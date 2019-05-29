@@ -27,7 +27,6 @@ class Post
 
             echo 'message envoyé';
         }
-
     }
 
     function getAll(PDO $con)

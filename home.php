@@ -2,7 +2,6 @@
 require 'assets/config/bootstrap.php';
 $page_title = 'AfterClass';
 
-
 if (!isset($_SESSION['user'])) {
   header('Location: index.php');
 }
@@ -18,7 +17,7 @@ include 'assets/inc/header.php';
 $post->deletePost($pdo);
 
 // voir les posts
-foreach ($post->getALL($pdo) as $post) :?>
+foreach ($post->getAll($pdo) as $post) :?>
 
   <article  class="post">
     <a href='post.php?id=<?=$post["id"]?>'> <h2 class="postTitle"> <?= $post['title']?> </h2> </a>
