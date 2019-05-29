@@ -51,14 +51,20 @@ if (isset($_POST['send'])) {
 	<article  class="post">
 		<h2 class="postTitle"> <?= $currentPost['title']?> </h2>
 		<p class="postContent"><?= htmlentities($currentPost['content']) ?></p>
-		<h3 class="postAuthor" >Auteur: <?= $currentPost['author'] ?></h3>
+        <h3 class="postAuthor" >Auteur: <?= $currentPost['author'] ?></h3>
+        <div class="fire-container">
+            <div class="fire">
+                <a href="post.php?fire=add"><img src="./assets/images/fire.svg" alt="fire"></a><span class="fire_number"><?= $currentPost['fire'] ?></span>
+            </div>
+
+        </div>
+
 		<h4 class="postDate" >Date  de publication: <?= $currentPost['date'] ?></h4>
 		<?php
 
       if ($currentPost['author'] === $_SESSION['user']['username']) {
 
         echo "<a href='post.php?modify&id=" . $_GET["id"] . "'>[Modifier]</a><br>";
-
       }
 		?>
 	</article>

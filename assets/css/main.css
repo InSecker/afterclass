@@ -57,7 +57,7 @@ a {
   margin-right: auto;
   margin-left: auto;
   margin-top: 20px;
-  padding: 10px;
+  padding: 20px;
   border: solid 1px gray;
   border-radius: 10px;
   background: white;
@@ -203,10 +203,32 @@ body {
 .red {
   background: #EC0707;
   border: #E32237 1px solid;
-
 }
 
 .green {
   background: #20CE43;
   border: #05ce68 1px solid;
 }
+
+.fire-container {
+  height: 30px;
+  width: 70px;
+}
+
+.fire {
+  display: flex;
+  align-items: center;
+}
+.fire img {
+margin-right: 5px;
+}
+
+.fire_number {
+  margin-top:2px;
+}
+
+.add_fire {
+  margin-left: 5px;
+  margin-top: 5px;
+}
+

@@ -30,7 +30,8 @@ foreach ($post->getALL($pdo) as $post) :?>
   <article  class="post">
     <a href='post.php?id=<?=$post["id"]?>'> <h2 class="postTitle"> <?= $post['title']?> </h2> </a>
     <p class="postContent"><?= htmlentities($post['content']) ?></p>
-    <h3 class="postAuthor" >Auteur: <?= $post['author'] ?></h3>
+      <h3 class="postAuthor" >Auteur: <?= $post['author'] ?></h3>
+      <h3 class="postFire" >Fire: <?= $post['fire'] ?></h3>
     <h4 class="postDate" >Date  de publication: <?= $post['date'] ?></h4>
   </article>
 

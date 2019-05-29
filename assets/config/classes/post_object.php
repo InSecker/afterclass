@@ -3,6 +3,7 @@
 class Post
 {
 
+    public $post;
     public function __construct()
     {
         $this->message = new Alert();
@@ -13,27 +14,27 @@ class Post
         $title = $_POST['title'];
         $content = $_POST['content'];
         $author = $_SESSION['user']['username'];
+        $fire = 0;
         if (empty($titre) and empty($content) and empty($author)) {
 
             $this->message->createAlert("Veuillez remplir tout les champs", 'red');
 
         } else {
             $req = $con->prepare('
-				INSERT INTO posts (title, content, author) 
+				INSERT INTO posts (title, content, author, fire) 
 				VALUES (
-						 :title ,
-						 :content ,
-						 :author
+						 :title,
+						 :content,
+						 :author,
+						 :fire
 				)
 			');
             $req->bindParam(':title', $title);
             $req->bindParam(':content', $content);
             $req->bindParam(':author', $author);
+            $req->bindParam(':fire', $fire);
             $req->execute();
-
             $this->message->createAlert("Message envoyé", 'green');
-
-
         }
 
     }
@@ -50,14 +51,14 @@ class Post
 		}
 
 		function update(PDO $con, $id) {
-
 			$title = $_POST['title'];
 			$content = $_POST['content'];
 			$author = $_SESSION['user']['username'];
 			if (empty($titre) and empty($content) and empty($author)) {
 
-				echo 'Veuillez remplir tout les champs';
-			} else {
+                $this->message->createAlert("Veuillez remplir tout les champs", 'red');
+
+            } else {
 				$req = $con->prepare('
 					UPDATE posts
 					SET title = :title,
@@ -67,7 +68,6 @@ class Post
 				$req->bindParam(':content', $content);
 				$req->execute();
 			}
-
     }
 
 
@@ -79,5 +79,10 @@ class Post
 
        }
 
+    }
+
+    function addFire() {
+        $post->update($pdo, intval($_GET['id']));
+        $currentPost = $post->getOne($pdo, $_GET['id']);
     }
 }
