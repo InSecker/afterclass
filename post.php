@@ -54,7 +54,7 @@ if (isset($_POST['send'])) {
         <h3 class="postAuthor" >Auteur: <?= $currentPost['author'] ?></h3>
         <div class="fire-container">
             <div class="fire">
-                <a href="post.php?fire=add"><img src="./assets/images/fire.svg" alt="fire"></a><span class="fire_number"><?= $currentPost['fire'] ?></span>
+                <a href="post.php?id=<?= $_GET['id']; ?>"><img src="./assets/images/fire.svg" alt="fire"></a><span class="fire_number"><?= $currentPost['fire'] ?></span>
             </div>
 
         </div>
