@@ -32,6 +32,8 @@ include  'assets/inc/header.php';
 
 		<input class="form__submit"  type="submit" name="login" class="" value="Connexion">
 	</form>
+
+	<a class="connexion_create"href="accountCreation.php">Créer un compte</a>
 </div>
 
-<a class="connexion_create"href="accountCreation.php">Créer un compte</a>
+

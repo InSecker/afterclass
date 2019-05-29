@@ -11,9 +11,11 @@ require __DIR__ . '/bdd.php';
 require __DIR__ . '/classes/user_object.php';
 require __DIR__ . '/classes/post_object.php';
 require __DIR__ . '/classes/alert.php';
+require __DIR__ . '/classes/comments.php';
 
-$user = new User($pdo);
-$post = new Post($pdo);
+$user = new User();
+$post = new Post();
 $alert = new Alert();
+$comments = new Comments();
 
 session_start();

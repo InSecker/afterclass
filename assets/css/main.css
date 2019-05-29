@@ -113,7 +113,8 @@ body {
 
 .connexion_create {
   color: white;
-  font-size: 18px;
+  font-size: 20px;
+  margin-top: 30px;
 }
 
 .connexion_create:hover {
@@ -150,7 +151,7 @@ body {
 }
 
 .indexLogo {
-  text-aligne: center;
+  text-align: center;
 }
 
 
@@ -171,3 +172,8 @@ body {
   font-size: 16px;
   border: none;
 }
+
+/* AJOUT D'UN COMMENTAIRE */
+
+
+  
