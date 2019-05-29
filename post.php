@@ -52,10 +52,13 @@ if (isset($_POST['send'])) {
 		<h2 class="postTitle"> <?= $currentPost['title']?> </h2>
 		<p class="postContent"><?= htmlentities($currentPost['content']) ?></p>
         <h3 class="postAuthor" >Auteur: <?= $currentPost['author'] ?></h3>
-        <div class="fire-container">
-            <div class="fire">
-                <a href="post.php?id=<?= $_GET['id']; ?>"><img src="./assets/images/fire.svg" alt="fire"></a><span class="fire_number"><?= $currentPost['fire'] ?></span>
+        <div class="likes-container">
+            <div class="likes">
+                <a href=""><span class="likes-numbers">177</span><img src="./assets/images/up.svg" alt="up"></a>
+                <a href=""><span class="likes-numbers">12</span><img src="./assets/images/down.svg" alt="down"></a>
             </div>
+        </div>
+        <div class="likes-container">
 
         </div>
 

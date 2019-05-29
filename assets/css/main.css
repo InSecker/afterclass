@@ -210,9 +210,14 @@ body {
   border: #05ce68 1px solid;
 }
 
-.fire-container {
+.likes-container {
   height: 30px;
-  width: 70px;
+  width: 100px;
+  margin-top: 10px;
+}
+
+.likes-container img {
+  margin-left: 5px;
 }
 
 .fire {
@@ -220,7 +225,7 @@ body {
   align-items: center;
 }
 .fire img {
-margin-right: 5px;
+  margin-right: 5px;
 }
 
 .fire_number {
@@ -232,3 +237,11 @@ margin-right: 5px;
   margin-top: 5px;
 }
 
+.likes-numbers {
+  padding-left: 5px;
+}
+
+
+form {
+  display: inline-block;
+}
