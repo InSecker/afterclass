@@ -1,17 +1,52 @@
 <?php
 
 require './assets/config/bootstrap.php';
-require './assets/inc/header.php';
 
 $page_title = 'AfterClass - Question';
 
+require './assets/inc/header.php';
+
+
+if (isset($_POST['send'])) {
+	$post->update($pdo, intval($_GET['id']));
+}
+
 ?>
 
-<?php
-	if(isset($_GET['id'])):
+<?php if(isset($_GET['modify'])):
 
-		$currentPost = $post->getOne($pdo, $_GET['id']);
-	?>
+	$currentPost = $post->getOne($pdo, $_GET['id']);
+
+
+  if ($currentPost['author'] !== $_SESSION['user']['username']) {
+    header('Location: home.php');
+  }
+  ?>
+
+  <article class="post">
+    <h1>Modifier</h1>
+
+    <form action="post.php?id=<?= $currentPost['id']; ?>" method="post">
+
+      <label class="createLabel" for="title">Titre</label>
+      <input class="createInput" type="text" name="title" value="<?= $currentPost['title']?>">
+
+      <label class="createLabel" for="content">Message</label>
+      <textarea class="createInput" name="content" id="content" cols="30" rows="10"><?= $currentPost['content']?></textarea>
+
+      <input class="createSubmit" type="submit" name="send">
+
+    </form>
+
+  </article>
+
+<?php ?>
+
+
+<?php elseif(isset($_GET['id'])):
+	$currentPost = $post->getOne($pdo, $_GET['id']);
+  ?>
+
 
 	<article  class="post">
 		<h2 class="postTitle"> <?= $currentPost['title']?> </h2>
@@ -21,9 +56,10 @@ $page_title = 'AfterClass - Question';
 		<?php
 
       if ($currentPost['author'] === $_SESSION['user']['username']) {
-        echo "<a href='post.php?modify&id=" . $_GET["id"] . "'>[Modifier]</a><br>";
-      }
 
+        echo "<a href='post.php?modify&id=" . $_GET["id"] . "'>[Modifier]</a><br>";
+
+      }
 		?>
 	</article>
 
