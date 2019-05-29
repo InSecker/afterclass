@@ -156,18 +156,16 @@ body {
 
 /* PAGE CREATION ARTICLE */
 
-
 .createLabel {
-  margin-top: 10px;
   color: black;
   width: 330px;
-  margin-bottom: 10px;
-  margin-top: 10px;
 }
 
 .createInput {
+  margin-bottom: 20px;
+  padding: 5px;
+  text-align: left;
   width: 100%;
-  text-align: center;
   background: rgb(240,240,240);
   border-radius: 10px;
   font-size: 16px;

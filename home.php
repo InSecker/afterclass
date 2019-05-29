@@ -25,13 +25,6 @@ foreach ($post->getALL($pdo) as $post) :?>
     <p class="postContent"><?= htmlentities($post['content']) ?></p>
     <h3 class="postAuthor" >Auteur: <?= $post['author'] ?></h3>
     <h4 class="postDate" >Date  de publication: <?= $post['date'] ?></h4>
-
-		<?php
-		if ($post['author'] === $_SESSION['user']['username']) {
-			echo "<a href='home.php?id=" . $post["id"] . "'>[Modifier]</a><br>";
-		}
-		?>
-
   </article>
 
 
