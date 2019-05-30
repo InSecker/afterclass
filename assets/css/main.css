@@ -15,6 +15,24 @@
   --blue: #002D5A;
 }
 
+.categories {
+  position: fixed;
+  background: white;
+  top: 90px;
+  left: 1.8vw;
+  width: 15vw;
+  border-radius: 10px;
+}
+
+.noCat {
+  background: white;
+  padding: 30px;
+  width: 50vw;
+  text-align: center;
+  margin: 200px auto;
+  border-radius: 20px;
+}
+
 header {
   padding: 5px;
   width: 100vw;
@@ -75,7 +93,7 @@ a {
   line-height: 1.5;
   background: rgb(245,245,245);
   padding: 5px;
-  margin-bottom: 20px;
+  margin: 20px 0;
   border-radius: 10px;
 }
 
@@ -85,6 +103,30 @@ a {
 
 .postDate {
   float: right;
+}
+
+.categoriesForm {
+  padding: 20px;
+  text-align: center;
+}
+
+.tagSort {
+  text-align: left;
+}
+
+.labelTagSort {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.inputTagSort {
+  margin-bottom: 10px;
+}
+
+.tagSubmit {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 body {
@@ -107,7 +149,7 @@ body {
 }
 
 .connexion__logo {
-  width: 430px;
+  width: 200px;
 }
 
 .connexion__form {
@@ -196,8 +238,7 @@ body {
   justify-content: center;
 }
 .alert {
-  height: 50px;
-  width: 300px;
+  padding: 20px;
   border-radius: 50px;
   display: flex;
   justify-content: center;

@@ -16,7 +16,7 @@ class User {
 		if (strpos($email, '@hetic.net') === false || empty($_POST['email'])) {
 
 			echo 'Entrez une adresse mail HETIC';
-			$this->message->createAlert('test', 'red');
+			$this->message->createAlert('Il vous faut une adresse mail HETIC pour vous connecter', 'red');
 
 
 		}	else if ($this::mailIsUsed($con, $email)) {

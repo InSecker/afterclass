@@ -1,27 +1,40 @@
 <?php
 
-require './assets/config/bootstrap.php';
+  require './assets/config/bootstrap.php';
+
+  // Redirect if not connected
+  if (!isset($_SESSION['user'])) {
+    header('Location: index.php');
+  }
 
 
-if (!isset($_SESSION['user'])) {
-	header('Location: index.php');
-}
+  // Update function
+  if (isset($_POST['send'])) {
+    $post->update($pdo, intval($_GET['id']));
+  }
 
-$page_title = 'AfterClass - Question';
-
-require './assets/inc/header.php';
+  $page_title = 'AfterClass - Question';
+  require './assets/inc/header.php';
 
 ?>
 
-<?php if(isset($_GET['modify'])):
+<?php
 
-	$currentPost = $post->getOne($pdo, $_GET['id']);
+  // Modify page
+  if(isset($_GET['modify'])):
 
+  $currentPost = $post->getOne($pdo, $_GET['id']);
 
+  // Redirect to home if the user is not the author
   if ($currentPost['author'] !== $_SESSION['user']['username']) {
     header('Location: home.php');
   }
-  ?>
+
+
+?>
+
+  <!-- MODIFY  SECTION -->
+
 
   <article class="post">
     <h1>Modifier</h1>
@@ -38,84 +51,129 @@ require './assets/inc/header.php';
 
     </form>
 
+    <form action="post.php?delete&id=<?= $currentPost['id']; ?>" method="post">
+      <button>SUPPRIMER</button>
+    </form>
+
   </article>
 
+
+
 <?php elseif(isset($_GET['id'])):
+
   $currentPost = $post->getOne($pdo, $_GET['id']);
+  if ($currentPost['author'] === $_SESSION['user']['username'] && isset($_GET['delete'])) {
+    echo 'hello';
+    $post->deletePost($pdo, $_GET['id']);
+  }
   
   if (isset($_POST['comment_content'])){
     $comments->addComment($pdo);
   }
-  
-  ?>
+
+  if (isset($_GET['voteUp'])) {
+
+    $vote->up($pdo, $_GET['idVote'], 'post');
+  }
+
+  if (isset($_GET['voteDown'])) {
+    $vote->down($pdo, $_GET['idVote'], 'post');
+  }
+?>
+
+  <!-- VIEW  SECTION -->
 
 
 	<article  class="post">
+
 		<h2 class="postTitle"> <?= $currentPost['title']?> </h2>
+    <a href="home.php?tags=<?= $currentPost['tag']?>"><h3>Catégorie: <?= $tags->getOne($pdo, $currentPost['tag']); ?></h3></a>
+
 		<p class="postContent"><?= htmlentities($currentPost['content']) ?></p>
 		<h3 class="postAuthor" >Auteur: <?= $currentPost['author'] ?></h3>
     <h4 class="postDate" >Date  de publication: <?= $currentPost['date'] ?></h4>
-        <div class="likes-container">
-            <div class="likes">
-                <a href=""><span class="likes-numbers">177</span><img src="./assets/images/up.svg" alt="up"></a>
-                <a href=""><span class="likes-numbers">12</span><img src="./assets/images/down.svg" alt="down"></a>
-            </div>
-        </div>
-        <div class="likes-container">
 
-        </div>
+    <div class="likes-container">
 
-		<h4 class="postDate" >Date  de publication: <?= $currentPost['date'] ?></h4>
+      <div class="likes">
+        <form action="post.php?voteUp&idVote=<?=$currentPost["id"]?>&id=<?= $currentPost['id']; ?>" method="post">
+          <button type="submit" href=""><img src="./assets/images/up.svg" alt="up"></button>
+        </form>
+        <span class="likes-numbers"><?= $vote->count($pdo, $currentPost['id'], 'post')?></span>
+        <form action="post.php?voteDown&idVote=<?=$currentPost["id"]?>&id=<?= $currentPost['id']; ?>" method="post">
+          <button type="submit"><span class="likes-numbers"></span><img src="./assets/images/down.svg" alt="down"></button>
+        </form>
+      </div>
+
+    </div>
+
 		<?php
-
       if ($currentPost['author'] === $_SESSION['user']['username']) {
-
         echo "<a href='post.php?modify&id=" . $_GET["id"] . "'>[Modifier]</a><br>";
       }
     ?>
 
-  <form class="comment" action="post.php?id=<?= $currentPost['id']; ?>" method="post">
-  
-    <label for="comments">ajouter un commentaire</label>
-    <input type="text" name="comment_content">
-    <input type="submit">
-  
-  </form>
+    <br>
+
+    <form class="comment" action="post.php?id=<?= $currentPost['id']; ?>" method="post">
+      <label for="comments">Proposer une réponse</label>
+      <input type="text" name="comment_content">
+      <input type="submit">
+    </form>
+
+    <br><br>
+
+    <hr>
+
+		<?php foreach ($comments->viewComments($pdo) as $comment) :?>
+
+      <div class="comment">
+        <p class="postContent"><?= htmlentities($comment['content']) ?></p>
+        <h3 class="postAuthor" >Auteur: <?= $comment['author'] ?></h3>
+        <h4 class="postDate" >Date  de publication: <?= $comment['date'] ?></h4>
+      </div>
+      <hr>
+		<?php  endforeach; ?>
+
     
   </article>
 
 
 
-<?php foreach ($comments->viewComments($pdo) as $comment) :?>
 
-  <article class="post">
-    <a href='post.php?id=<?=$comment["id"]?>'> <h2 class="postTitle"> <?= $comment['title']?> </h2> </a>
-    <p class="postContent"><?= htmlentities($comment['content']) ?></p>
-    <h3 class="postAuthor" >Auteur: <?= $comment['author'] ?></h3>
-    <h4 class="postDate" >Date  de publication: <?= $comment['date'] ?></h4>
-  </article>
-
- 
-<?php  endforeach; ?>
 
 <?php else: ?>
 
-<article class="post">
-  <h1>Écrire une question</h1>
 
-  <form action="home.php" method="post">
+  <!-- CREATE SECTION -->
 
-    <label class="createLabel" for="title">Titre</label>
-    <input class="createInput" type="text" name="title">
 
-    <label class="createLabel" for="content">Message</label>
-    <textarea class="createInput" name="content" id="content" cols="30" rows="10"></textarea>
+  <article class="post">
+    <h1>Écrire une question</h1>
 
-    <input class="createSubmit" type="submit" name="send">
+    <form action="home.php" method="post">
 
-  </form>
 
-</article>
+
+      <label class="createLabel" for="title">Titre</label>
+      <input class="createInput" type="text" name="title">
+
+      <label class="createLabel" for="content">Message</label>
+      <textarea class="createInput" name="content" id="content" cols="30" rows="10"></textarea>
+
+      <div class="tags">
+        <?php foreach($tags->getAll($pdo) as $tag): ?>
+        <input type="radio" id="tag<?= $tag['id'] ?>"
+               name="tags" value="<?= $tag['id'] ?>" required>
+        <label for="tag<?= $tag['id'] ?>"><?= $tag['label'] ?></label>
+        <?php endforeach; ?>
+      </div>
+
+      <input class="createSubmit" type="submit" name="send">
+
+    </form>
+
+  </article>
 
 
 <?php endif; ?>
@@ -123,14 +181,3 @@ require './assets/inc/header.php';
 <?php
 require './assets/inc/footer.php';
 ?>
-
-
-<style>
-
-.comment {
-
-margin-top: 30px;
-
-}
-
-</style>
