@@ -89,7 +89,6 @@ require './assets/inc/header.php';
 <?php foreach ($comments->viewComments($pdo) as $comment) :?>
 
   <article class="post">
-    <a href='post.php?id=<?=$comment["id"]?>'> <h2 class="postTitle"> <?= $comment['title']?> </h2> </a>
     <p class="postContent"><?= htmlentities($comment['content']) ?></p>
     <h3 class="postAuthor" >Auteur: <?= $comment['author'] ?></h3>
     <h4 class="postDate" >Date  de publication: <?= $comment['date'] ?></h4>
