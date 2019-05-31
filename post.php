@@ -64,7 +64,6 @@
 
   $currentPost = $post->getOne($pdo, $_GET['id']);
   if ($currentPost['author'] === $_SESSION['user']['username'] && isset($_GET['delete'])) {
-    echo 'hello';
     $post->deletePost($pdo, $_GET['id']);
   }
   
@@ -107,9 +106,8 @@
     </div>
     </div>
 
-    <h3 class="question">Questions</h3>
+    <h3 class="question"><?= $currentPost['title']?></h3>
     <div class="post__question">
-    <h2 class="postTitle"> <?= $currentPost['title']?> </h2>
     <p class="postContent"><?= htmlentities($currentPost['content']) ?></p>
     </div>
 

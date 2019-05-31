@@ -88,9 +88,8 @@ foreach ($post->getALL($pdo) as $post): ?>
       </div>
 
     </div>
-    <h3 class="question">Questions</h3>
+    <h3 class="question"><?= $post['title']?></h3>
     <div class="post__question">
-      <h2 class="postTitle"> <?= $post['title']?> </h2>
       <p class="postContent"><?= htmlentities($post['content']) ?></p>
     </div>
     

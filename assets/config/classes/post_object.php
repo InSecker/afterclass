@@ -32,7 +32,7 @@ class Post
             $req->bindParam(':title', $title);
             $req->bindParam(':content', $content);
             $req->bindParam(':author', $author);
-						$req->bindParam(':tag', $tagID);
+			$req->bindParam(':tag', $tagID);
             $req->execute();
             $this->message->createAlert("Message envoyé", 'green');
         }
@@ -82,7 +82,6 @@ class Post
     {
     	$req = $con->query('DELETE FROM posts where id='.$id);
 			$req->execute();
-
 			header('Location: home.php');
     }
 }
