@@ -53,5 +53,8 @@ class Comments {
 
     }
 
-
+		public function count(PDO $con, $id) {
+			$req = $con->query('SELECT COUNT(*) FROM comments WHERE (post_id="' . $id .'")');
+			return $req->fetch(PDO::FETCH_ASSOC)['COUNT(*)'];
+		}
 }

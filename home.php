@@ -9,12 +9,14 @@ if(isset($_POST['send'])) {
 	$post->addPost($pdo);
 }
 
+if (isset($_GET['tags']) && $_GET['tags'] == '') {
+  header('Location: home.php');
+}
+
 include 'assets/inc/header.php';
 ?>
 
 <?php
-
-$post->deletePost($pdo);
 
 if(isset($_SESSION['message'])) {?>
     <div class="container_alert">
@@ -31,12 +33,45 @@ if (isset($_GET['voteDown'])) {
 	$vote->down($pdo, $_GET['idVote'], 'post');
 }
 
+$checker = false;
+
 foreach ($post->getALL($pdo) as $post): ?>
 
-  <article  class="post">
-    <a href='post.php?id=<?=$post["id"]?>'> <h2 class="postTitle"> <?= $post['title']?> </h2> </a>
-    <p class="postContent"><?= htmlentities($post['content']) ?></p>
-      <h3 class="postAuthor" >Auteur: <?= $post['author'] ?></h3>
+  <?php $checker = true; ?>
+
+  <!-- FILTRES -->
+
+  <div class="categories">
+
+    <h3>Filtres</h3>
+    <form class="categoriesForm" action="home.php" method="get">
+
+      <div class="tagSort">
+				<?php foreach($tags->getAll($pdo) as $tag): ?>
+          <input class="inputTagSort" type="radio" id="tag<?= $tag['id'] ?>"
+                 name="tags" value="<?= $tag['id'] ?>" required>
+          <label class="labelTagSort" for="tag<?= $tag['id'] ?>"><?= $tag['label'] ?></label>
+          <br>
+				<?php endforeach; ?>
+      </div>
+
+      <input class="tagSubmit" type="submit" value="Rechercher">
+
+    </form>
+  </div>
+
+
+  <!-- POSTES -->
+
+  <article class="post">
+
+    <a href="home.php?tags=<?= $post['tag']?>"><h3 class="post__categorie"><?= $tags->getOne($pdo, $post['tag']); ?></h3></a>
+    <div class="container__likeAndAuthor">
+
+    <h3 class="postAuthor" >Posté par <span class="author"><?= $post['author'] ?></span>   le <?= $post['date'] ?> </h3>
+
+    <div class="container__like">
+      <h3>Nombre de réponses: <?= $comments->count($pdo, $post['id']) ?></h3>
       <div class="likes-container">
 
           <div class="likes">
@@ -50,12 +85,34 @@ foreach ($post->getALL($pdo) as $post): ?>
           </div>
 
       </div>
-    <h4 class="postDate" >Date  de publication: <?= $post['date'] ?></h4>
+      </div>
+
+    </div>
+    <h3 class="question">Questions</h3>
+    <div class="post__question">
+      <h2 class="postTitle"> <?= $post['title']?> </h2>
+      <p class="postContent"><?= htmlentities($post['content']) ?></p>
+    </div>
+    
+    <a href='post.php?id=<?=$post["id"]?>'>Voir les réponses</a>
+
   </article>
 
 
   <br>
 
 <?php  endforeach;
+
+if (!$checker): ?>
+
+<article class="noCat">
+
+  <a href="home.php">Aucun question dans cette catégorie. Cliquer pour revenir.</a>
+
+</article>
+
+
+<?php endif;
+
 
 include 'assets/inc/footer.php';
