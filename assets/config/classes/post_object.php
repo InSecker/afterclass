@@ -15,10 +15,10 @@ class Post
         $content = $_POST['content'];
         $author = $_SESSION['user']['username'];
         $tagID = $_POST['tags'];
-        if (empty($titre) and empty($content) and empty($author)) {
+        if (empty($titre) and empty($content)) {
 
             $this->message->createAlert("Veuillez remplir tout les champs", 'red');
-
+				die();
         } else {
             $req = $con->prepare('
 				INSERT INTO posts (title, content, author, tag) 
