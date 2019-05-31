@@ -1,24 +1,15 @@
 <?php
-
 require 'assets/config/bootstrap.php';
 $page_title = 'AfterClass - Connexion';
-
 $user->disconnect();
 if (isset($_SESSION['user'])) {
   header('Location: home.php');
 }
-
 if ( isset($_POST['login']) ) {
 	$user->connect($pdo);
 }
-
-
 include  'assets/inc/header.php';
-
 ?>
-
-
-
 <div class="connexion__container">
   <img class="indexLogo" src="assets/images/logo.svg" alt="">
 	<form class="connexion__form" action="index.php" method="post">
@@ -31,7 +22,6 @@ include  'assets/inc/header.php';
 		<input class="form__submit"  type="submit" name="login" class="" value="Connexion"> <br>
         <?php $user->message->showAlert(); ?>
 	</form>
-
 	<a class="connexion_create"href="accountCreation.php">Créer un compte</a>
 </div>
 

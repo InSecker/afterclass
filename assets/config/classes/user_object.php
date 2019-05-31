@@ -15,7 +15,7 @@ class User {
 
 		if (strpos($email, '@hetic.net') === false || empty($_POST['email'])) {
 
-			echo 'Entrez une adresse mail HETIC';
+			
 			$this->message->createAlert('Il vous faut une adresse mail HETIC pour vous connecter', 'red');
 
 
@@ -59,9 +59,9 @@ class User {
 			$req->bindParam(':mail', $email);
 			$req->bindParam(':username', $username);
 			$password = password_hash($password, PASSWORD_DEFAULT);
-			echo $password;
 			$req->bindParam(':password', $password);
 			$req->execute();
+			$this->message->createAlert('Votre compte a bien été créer.', 'green');
 			header('Location: index.php');
 			exit();
 		}
@@ -116,6 +116,8 @@ class User {
 			// On enregistre l'utilisateur en session
 			unset($user['mdp']); // le hash du mdp n'est pas à stocker en session
 			$_SESSION['user'] = $user;
+			$this->message->createAlert("Bienvenue ".$user['username'], 'green');
+
 
 			// Redirection vers la page d'accueil
 			session_write_close();
@@ -125,7 +127,9 @@ class User {
 
 	public function disconnect() {
 		// Déconnexion
+
 		if (isset($_GET['logout'])) {
+			
 			unset($_SESSION['user']);
 			header('Location: index.php');
 		}

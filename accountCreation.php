@@ -15,7 +15,7 @@ include  'assets/inc/header.php';
 
 
 <div class="connexion__container">
-<?php $user->message->showAlert(); ?>
+
 	<img class="connexion__logo" src="assets/images/logo.svg" alt="logo">
 
 	<form class="connexion__form"action="accountCreation.php" method="post">
@@ -30,6 +30,7 @@ include  'assets/inc/header.php';
 		<input class="form__field" type="password" id="mdp" name="password" class="">
 
 		<input class="form__submit" type="submit" name="createAccount" value="Soumettre">
+		<?php $user->message->showAlert(); ?>
 	</form>
 	
 	<a class="connexion_create" href="index.php">Déja un compte ? connectez-vous !</a>

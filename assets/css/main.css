@@ -249,7 +249,7 @@ nav {
 .post__categorie {
   background: #ff8b1e8f;
   background-size: contain;
-  width: min-content;
+  width: max-content;
   padding: 10px;
   border-radius: 10px;
 }
@@ -444,7 +444,7 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: exit 6s forwards;
+  animation: exit 9s forwards;
 }
 
 .red {
@@ -453,8 +453,8 @@ textarea {
 }
 
 .green {
-  background: #20CE43;
-  border: #05ce68 1px solid;
+  background: #67f583;
+  border: 1px solid #63ee7f;
 }
 
 .container__like {
